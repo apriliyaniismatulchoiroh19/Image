@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBD Kafka Anisa Alnaisa</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Caveat:wght@700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --primary-pink: #ffafcc;
+            --secondary-pink: #ffc2d1;
+            --dark-pink: #fb6f92;
+            --bg-color: #fff0f3;
+            --text-color: #4a4a4a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        #main-container {
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            position: relative;
+            background: radial-gradient(circle, #ffffff 0%, #fff0f3 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+
+        .section {
+            display: none;
+            width: 100%;
+            animation: fadeIn 0.8s ease-out forwards;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Elements Style */
+        .gif-container {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .photo-frame {
+            width: 220px;
+            height: 280px;
+            border: 8px solid white;
+            border-bottom: 40px solid white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            transform: rotate(-3deg);
+            margin-bottom: 20px;
+            background: #eee;
+            overflow: hidden;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--dark-pink);
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .message-text {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            color: #555;
+            padding: 0 10px;
+        }
+
+        .btn {
+            background-color: var(--dark-pink);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(251, 111, 146, 0.4);
+            transition: transform 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Floating Bubbles */
+        .bubble {
+            position: absolute;
+            bottom: -50px;
+            background-color: rgba(255, 175, 204, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: float 10s infinite linear;
+        }
+
+        @keyframes float {
+            to { transform: translateY(-110vh) rotate(360deg); }
+        }
+
+        /* Audio Control */
+        #music-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+            cursor: pointer;
+        }
+
+        .from-to {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        .death-emoji {
+            font-size: 3rem;
+            display: block;
+            margin: 10px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="music-btn" onclick="toggleMusic()">🎵</div>
+
+    <div id="main-container">
+        
+        <!-- Bagian 1: Start -->
+        <div id="section1" class="section active">
+            <div class="gif-container">
+                <img src="https://raw.githubusercontent.com/feeldreams/feeldreams.github.io/main/cilukba.gif" alt="Cilukba">
+            </div>
+            <h1>Halo Sayang!</h1>
+            <p>Ada kejutan kecil buat kamu... Tap tombol di bawah ya!</p>
+            <button class="btn" onclick="nextSection(1)">Tap di Sini ✨</button>
+        </div>
+
+        <!-- Bagian 2: Ucapan Pembuka -->
+        <div id="section2" class="section">
+            <div class="gif-container">
+                <img src="https://raw.githubusercontent.com/feeldreams/feeldreams.github.io/main/bisikin.gif" alt="Bisikin">
+            </div>
+            <p class="message-text">Sini deh... aku mau bisikin sesuatu...</p>
+            <button class="btn" onclick="nextSection(2)">Apa tuh? 👂</button>
+        </div>
+
+        <!-- Bagian 3: Foto 1 & HBD -->
+        <div id="section3" class="section">
+            <div class="photo-frame">
+                <img src="https://raw.githubusercontent.com/apriliyaniismatulchoiroh19/Image/main/KafkaAnisaalnaisa/IMG-20260226-WA0000.jpg" alt="Kafka 1">
+            </div>
+            <h1>Happy Birthday!</h1>
+            <p class="message-text">Selamat ulang tahun <b>Kafka Anisa Alnaisa</b>. Semoga hari ini seindah senyumanmu.</p>
+            <button class="btn" onclick="nextSection(3)">Next 💖</button>
+        </div>
+
+        <!-- Bagian 4: Pesan Latihan (Serius tapi Lucu) -->
+        <div id="section4" class="section">
+            <div class="gif-container">
+                <img src="https://raw.githubusercontent.com/feeldreams/feeldreams.github.io/main/garuk.gif" alt="Lucu">
+            </div>
+            <p class="message-text">"Semangat latihannya ya! Jangan sering bolos..."</p>
+            <p class="message-text">Nanti dihukum mati lho! <span class="death-emoji">💀</span> Kalo mati sedih dong... 🤧</p>
+            <button class="btn" onclick="nextSection(4)">Janji Gak Bolos ✌️</button>
+        </div>
+
+        <!-- Bagian 5: Foto 2 & Motivasi -->
+        <div id="section5" class="section">
+            <div class="photo-frame" style="transform: rotate(3deg);">
+                <img src="https://raw.githubusercontent.com/apriliyaniismatulchoiroh19/Image/main/KafkaAnisaalnaisa/IMG-20260226-WA0001.jpg" alt="Kafka 2">
+            </div>
+            <p class="message-text">"Raih lagi medali yang banyak ya kak! Aku selalu dukung kamu di sini."</p>
+            <button class="btn" onclick="nextSection(5)">Aamiin 🙏</button>
+        </div>
+
+        <!-- Bagian 6: Foto 3 & Doa -->
+        <div id="section6" class="section">
+            <div class="photo-frame">
+                <img src="https://raw.githubusercontent.com/apriliyaniismatulchoiroh19/Image/main/KafkaAnisaalnaisa/IMG-20260226-WA0002.jpg" alt="Kafka 3">
+            </div>
+            <div class="gif-container" style="height: 100px;">
+                <img src="https://raw.githubusercontent.com/feeldreams/feeldreams.github.io/main/0906-peacegoma.gif" alt="Peace">
+            </div>
+            <p class="message-text">"Masyaallah... Bagian ini penuh doa ya buat kamu. Sehat selalu dan dilancarkan segala urusannya."</p>
+            <button class="btn" onclick="nextSection(6)">Terima Kasih 🌹</button>
+        </div>
+
+        <!-- Bagian 7: Foto 4 & Kebersamaan -->
+        <div id="section7" class="section">
+            <div class="photo-frame" style="transform: rotate(-2deg);">
+                <img src="https://raw.githubusercontent.com/apriliyaniismatulchoiroh19/Image/main/KafkaAnisaalnaisa/IMG-20260226-WA0003.jpg" alt="Kafka 4">
+            </div>
+            <div class="gif-container" style="height: 80px;">
+                <img src="https://raw.githubusercontent.com/feeldreams/feeldreams.github.io/main/fotbar.gif" alt="Fotbar">
+            </div>
+            <p class="message-text">Tetap semangat ya latihannya, jangan males-malesan!</p>
+            <button class="btn" onclick="nextSection(7)">Siap! 🫡</button>
+        </div>
+
+        <!-- Bagian 8: Foto 5 & Kado -->
+        <div id="section8" class="section">
+            <div class="photo-frame" style="transform: rotate(2deg);">
+                <img src="https://raw.githubusercontent.com/apriliyaniismatulchoiroh19/Image/main/KafkaAnisaalnaisa/IMG-20260226-WA0004.jpg" alt="Kafka 5">
+            </div>
+            <div class="gif-container" style="height: 100px;">
+                <img src="https://raw.githubusercontent.com/feeldreams/feeldreams.github.io/main/kadoin.png" alt="Kado">
+            </div>
+            <p class="message-text">Ini kado virtual dari aku dulu ya... Semoga suka!</p>
+            <button class="btn" onclick="nextSection(8)">Buka Kado 🎁</button>
+        </div>
+
+        <!-- Bagian Penutup: Foto 6 & Final -->
+        <div id="section9" class="section">
+            <div class="photo-frame">
+                <img src="https://raw.githubusercontent.com/apriliyaniismatulchoiroh19/Image/main/KafkaAnisaalnaisa/IMG-20260226-WA0005.jpg" alt="Kafka 6">
+            </div>
+            <div class="gif-container">
+                <img src="https://raw.githubusercontent.com/feeldreams/feeldreams.github.io/main/tos.gif" alt="Tos">
+            </div>
+            <h1>I Love You!</h1>
+            <p class="message-text">Happy Birthday sekali lagi, Kafka.</p>
+            <div class="from-to">
+                From: <b>Frezky Airlangga</b><br>
+                To: <b>Kafka Anisa Alnaisa</b>
+            </div>
+            <button class="btn" onclick="location.reload()">Ulangi Lagi? 🔄</button>
+        </div>
+
+    </div>
+
+    <!-- Background Music -->
+    <audio id="backsound" loop>
+        <source src="https://raw.githubusercontent.com/feeldreams/feeldreams.github.io/main/audio/janjisuci.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const audio = document.getElementById('backsound');
+        let isMusicPlaying = false;
+
+        // Fungsi pindah section
+        function nextSection(current) {
+            // Putar musik di interaksi pertama
+            if (current === 1 && !isMusicPlaying) {
+                playMusic();
+            }
+
+            // Efek Confetti pada momen tertentu
+            if (current === 2 || current === 8) {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#ffafcc', '#fb6f92', '#ffffff']
+                });
+            }
+
+            document.getElementById(`section${current}`).classList.remove('active');
+            const next = current + 1;
+            if (document.getElementById(`section${next}`)) {
+                document.getElementById(`section${next}`).classList.add('active');
+            }
+        }
+
+        // Musik Control
+        function playMusic() {
+            audio.play().then(() => {
+                isMusicPlaying = true;
+                document.getElementById('music-btn').innerHTML = "⏸️";
+            }).catch(e => console.log("Autoplay dicegah browser, perlu tap."));
+        }
+
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                audio.pause();
+                isMusicPlaying = false;
+                document.getElementById('music-btn').innerHTML = "▶️";
+            } else {
+                audio.play();
+                isMusicPlaying = true;
+                document.getElementById('music-btn').innerHTML = "⏸️";
+            }
+        }
+
+        // Floating Bubbles Background
+        function createBubbles() {
+            const container = document.getElementById('main-container');
+            const bubbleCount = 15;
+            
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                
+                const size = Math.random() * 60 + 20 + 'px';
+                bubble.style.width = size;
+                bubble.style.height = size;
+                
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.animationDuration = Math.random() * 5 + 5 + 's';
+                bubble.style.animationDelay = Math.random() * 5 + 's';
+                
+                container.appendChild(bubble);
+            }
+        }
+
+        window.onload = createBubbles;
+    </script>
+</body>
+  </html>
